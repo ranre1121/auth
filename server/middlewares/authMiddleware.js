@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 const JWT_SECRET = process.env.JWT_SECRET;
 
 export const protect = (req, res, next) => {
-  const authHeader = req.body.authorization;
+  const authHeader = req.headers.authorization;
 
   if (!authHeader) {
     return res.status(201).json({ message: "No token provided" });

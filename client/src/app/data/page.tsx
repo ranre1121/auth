@@ -1,13 +1,10 @@
 "use client";
-
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export default function Home() {
+const page = () => {
   const router = useRouter();
-
   useEffect(() => {
     const verifyToken = async () => {
       const token = localStorage.getItem("token");
@@ -35,5 +32,16 @@ export default function Home() {
     verifyToken();
   }, []);
 
-  return <></>;
-}
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+
+  return (
+    <div>
+      <LogOut onClick={handleLogout} />
+    </div>
+  );
+};
+
+export default page;
